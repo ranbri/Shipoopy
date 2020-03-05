@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"marketDB.carts"}],"uuid":"171db0bc00fe4e489e19a3de613a1de3"}

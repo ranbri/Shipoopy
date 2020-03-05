@@ -1,0 +1,21 @@
+<div>
+    <form [formGroup]="login">
+        <app-loading></app-loading>
+        <table *ngIf="!this.redux.getState().loading">
+            <tbody>
+                <tr>
+                    <td><label>email:</label></td>
+                    <td><input [(ngModel)]="customer.email" formControlName="email" type="email" required
+                            pattern="^(\w|\W)+@\w+\.(\w|\.)+$" autofocus></td>
+                </tr>
+                <tr>
+                    <td><label>password:</label></td>
+                    <td><input [(ngModel)]="customer.password" formControlName="password" type="password" required
+                            pattern="^\w{4,}$"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button *ngIf="!this.redux.getState().loading" [disabled]="!login.valid"
+            (click)="LoginCustomer()">login</button>
+    </form>
+</div>

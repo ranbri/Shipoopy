@@ -1,0 +1,9 @@
+<div *ngIf="this.product" class="product-details" (click)="close()">
+    <div class="product-details-body" (click)="$event.stopPropagation()">
+        <i class="fa fa-times" (click)="close()"></i>
+        <h3>{{this.product.name}}</h3>
+        <input #amount type="number" min=1 value=1 />
+        <button (click)="addProd(this.product._id, amount.value)">add</button>
+        <app-thumbnail [product]="this.product" [cursor]="false" class="thumb"></app-thumbnail>
+    </div>
+</div> 

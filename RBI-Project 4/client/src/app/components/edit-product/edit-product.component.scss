@@ -1,0 +1,59 @@
+@import '../../../variables.scss';
+div{
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background: $main;
+    transition: .8s ease-in-out;
+    right: 0;
+    border: 2px solid $semi;
+    border-left: 0.6px solid white;
+    &.hide{
+        top: -50%;
+        opacity: 0;
+    }
+    &.show{
+        top: 0;
+        opacity: 1;
+    }
+    >h2{
+        font-size: 20px;
+        color: $main;
+        text-transform: capitalize;
+        margin-top: 15px;
+        text-align: center;
+    }
+    >form{
+        text-align: center;
+        margin-top: 80px;
+        label, input, button{
+            margin-top: .4em;
+            color: $main;
+            font-size: 1.1em;
+            border: none;
+        }
+        input, button:nth-of-type(2){
+            margin-left: .4em;
+        }
+        label{
+            text-transform: capitalize;
+        }
+        input{
+            width: 40%;
+            background: $semi;
+            border-bottom: $main;
+            text-align: center;
+        }
+        button{
+            background: $semi;
+            text-transform: uppercase;
+            padding: .1em .6em;
+            transition: .4s;
+            &:hover{
+                background: $main;
+                color: $semi;
+                border-radius: .3em;
+            }
+        }
+    }
+}

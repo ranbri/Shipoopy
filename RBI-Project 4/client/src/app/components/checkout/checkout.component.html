@@ -1,0 +1,117 @@
+<div *ngIf="this.redux.getState().currentUser" class="checkout">
+    <div *ngIf="!this.redux.getState().currentUser.address" class="address-box">
+        <form [formGroup]=addressForm>
+            <h2>Please Fill Your Address:</h2>
+            <table>
+                <tr>
+                    <td><label>City:</label></td>
+                    <td>
+                        <select autocomplete          formControlName="city"      required>
+                            <option 
+                            *ngFor="let c of this.redux.getState().cities" 
+                            value="{{c.eng_name}}">
+                            {{c.eng_name.toLowerCase()}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Street:</label></td>
+                    <td><input type="text"   min="1"  formControlName="street"    required></td>
+                </tr>
+                <tr>
+                    <td><label>House:</label></td>
+                    <td><input type="number" min="1"  formControlName="house"     required></td>
+                </tr>
+                <tr>
+                    <td><label>Entrance:</label></td>
+                    <td><input type="number" min="1"  formControlName="entrance"  required></td>
+                </tr>
+                <tr>
+                    <td><label>Floor:</label></td>
+                    <td><input type="number" min="1"  formControlName="floor"     required></td>
+                </tr>
+                <tr>
+                    <td><label>Apartment:</label></td>
+                    <td><input type="number" min="1"  formControlName="apartment" required></td>
+                </tr>
+            </table>
+            <button [disabled]="!addressForm.valid" (click)="addAddress()">Add Address</button>
+        </form>
+    </div>
+    <div *ngIf="this.redux.getState().currentUser.address && this.creditBool === false" class="cc">
+        <form [formGroup]="creditForm">
+            <h2>Credit Card Informations</h2>
+            <table>
+                <tr>
+                    <td><label>Number:</label></td>
+                    <td>
+                        <input type="text" autofocus pattern="^\d{12,19}$" formControlName="number"  required>
+                    </td>
+                    <span 
+                    *ngIf="!creditForm.controls.number.valid&&creditForm.controls.number.dirty"
+                    [ngClass]="{default: !creditForm.controls.number.valid}" >Number is INVALID</span>
+                    <span 
+                    *ngIf="creditForm.controls.number.valid"
+                    [ngClass]="{green: creditForm.controls.number.valid}">
+                        <i class="far fa-check-square"></i>
+                    </span>
+                </tr>
+                <tr>
+                    <td><label>Expire:</label></td>
+                    <td formGroupName="expire">
+                        <select formControlName="month" required >
+                            <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
+                        </select>
+                        <select formControlName="year" required>
+                            <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>CVV:</label></td>
+                    <td><input type="text" formControlName="cvv" min="1" required pattern="^\d{3}$"></td>
+                    <span 
+                        *ngIf="creditForm.controls.cvv.invalid && creditForm.controls.cvv.dirty"
+                        class="default ">Number is INVALID</span>
+                    <span *ngIf="creditForm.controls.cvv.valid" 
+                        class="green">
+                        <i class="far fa-check-square"></i>
+                    </span>
+                </tr>
+            </table>
+            <button [disabled]="!creditForm.valid" (click)="addCC()">Next</button>
+        </form>
+    </div>
+    <div  *ngIf="this.creditBool === true">
+        <form [formGroup]="deliveryForm" class="delivery-form">
+            <h2>Delivary Details:</h2>
+            <table>
+                <tr>
+                    <td><label>Date:</label></td>
+                    <td>
+                        <input 
+                        formControlName="date" 
+                        type="date" 
+                        [min]="minDate" 
+                        required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Time:</label></td>
+                    <td>
+                        <input 
+                            formControlName="time" 
+                            type="time" min="09:00" 
+                            max="21:00" 
+                            required 
+                            pattern="^(1\d\:[0-5]\d$|20:00)">
+                            <label 
+                            *ngIf="!deliveryForm.controls.time.valid && deliveryForm.controls.time.dirty " 
+                            class="error ">From 10:00 to 20:00!</label>
+                    </td>
+                </tr>
+            </table>
+            <button [disabled]="!deliveryForm.valid" (click)="order()">Order</button>
+        </form>
+    </div>
+</div>

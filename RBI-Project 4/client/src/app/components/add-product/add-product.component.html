@@ -1,0 +1,55 @@
+<div>
+    <form [formGroup]="product" *ngIf="this.redux.getState().prodCategories">
+        <table>
+            <tr>
+                <th>
+                    <label>Category:</label>
+                </th>
+                <th>
+                    <select [(ngModel)]="product.value.prodCategory" formControlName="prodCategory">
+                        <option value="undefined" selected disabled>select category...</option>
+                        <option *ngFor="let c of this.redux.getState().prodCategories" value={{c._id}}>{{c.name}}
+                        </option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>product name:</label>
+                </th>
+                <th>
+                    <input type="text" formControlName="name">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>price:</label>
+                </th>
+                <th>
+                    <input type="number" formControlName="price">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input id="file" type="file" style="display: none;" (change)="fileProgress($event)" />
+                </th>
+                <th>
+                    <button type="button" onclick="document.getElementById('file').click();">Upload Photo</button>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <button type="button" (click)="addProd()"
+                        [disabled]="!product.value.name && !product.value.price && !product.value.prodCategory && !this.file"
+                        class="add">add</button>
+                </th>
+                <th>
+                    <br><br>
+                    <div class="img-box">
+                        <app-thumbnail *ngIf="this.file"></app-thumbnail>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </form>
+</div>

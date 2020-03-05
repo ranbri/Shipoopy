@@ -1,0 +1,127 @@
+@import '../../../variables.scss';
+.left{
+    float: left;
+}
+
+div{
+    overflow-y: auto;
+    border: 1px solid $semi;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 1em;
+    background: $main;
+    border-right: .15em solid $main;
+    border-bottom: .15em solid $main;
+    text-align: center;
+    overflow-y: auto;
+    padding: .8em 1em;
+    animation: cart .4s alternate  forwards;
+    >p{
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        font-weight: bolder;
+        color: $main;
+        letter-spacing: 3px;
+        &:nth-of-type(2){
+            margin-top: .4em;
+            color: $main;
+            letter-spacing: normal;
+        }
+    }
+    >i{
+        color: $semi;
+        margin-bottom: 5px;
+        cursor: pointer;
+        &:hover{
+            color: white; 
+            transform: scale(1.08);
+        }
+        p{
+            display: inline-block;
+            font-family: $font-family2;
+            text-transform: capitalize;
+            font-size: 20px;
+        }
+    }
+    button{
+        border-radius: 10px;
+        width: 50%;
+        padding: .2em;
+        background: $main;
+        border: $border $semi;
+        color: $semi;
+        font-family: $font-family;
+        font-size: 1em;
+        text-transform: uppercase;
+        outline: none;
+        ;
+        transition: .4s;
+        &:disabled{
+            cursor: no-drop;
+            transition: none;
+            color: $disabled;
+            font-weight: bolder;
+        }
+        &:enabled:hover{
+            border-color: $main;
+            color: $main;
+            background: $semi;
+        }
+    }
+    table{
+        overflow-y: auto;
+
+        margin: auto;
+        width: 75%;
+        border: 1px solid $main;
+        & th, td{
+            border: 1px solid $main;
+            padding: .15em .8em;
+            color: $semi;
+        }
+        tr:not(tr:nth-of-type(1)){
+            transform: translateY(-2em);
+            transition: .4s ease-in-out;
+            &:active{
+                background: #d63031;
+            }
+            &.shown{
+                transform: translateY(0);
+            }
+        }
+        th{
+            color: $main;
+            text-transform: capitalize;
+            letter-spacing: .2em;
+            font-weight: bold;
+        }
+        td{
+            text-transform: capitalize;
+        }
+        td>i:nth-of-type(1){
+            cursor: pointer;
+            margin-right: .2em;
+            font-size: 1em;
+        }
+        td>i:nth-of-type(2){
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        
+    }
+}
+p{
+    color: $semi !important; 
+    font-family: $font-family2;
+}
+@keyframes cart{
+    0%{
+        transform: translateX(-120%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}

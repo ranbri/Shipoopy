@@ -1,0 +1,20 @@
+<div class="navBar">
+    <div class="nav">
+        <a *ngIf="!this.redux.getState().loggedIn" routerLink="/login">login</a>
+        <a *ngIf="!this.redux.getState().loggedIn" routerLink="/register">register</a>
+        <span *ngIf="this.redux.getState().loggedIn">welcome &nbsp;{{this.redux.getState().currentUser.firstName}}</span>
+        <a *ngIf="this.redux.getState().loggedIn&&this.router.routerState.snapshot.url!=='/ordered'" [routerLink]="this.redux.getState().admin ? '/admin' : '/home'" >home</a>
+        <a *ngIf="this.redux.getState().loggedIn" routerLink="/sales" (click)="logout()">logout</a>
+        <a *ngIf="checkedOut()" routerLink="/home" (click)="restoreCart()">back shopping</a>
+    </div>
+    <div 
+    *ngIf="
+    this.redux.getState().loggedIn && 
+    this.router.routerState.snapshot.url!=='/checkout' &&
+    this.router.routerState.snapshot.url!=='/ordered' && 
+    this.router.routerState.snapshot.url!=='/sales'" 
+    class="search">
+        <label>Search:</label><input #searchBar type="text" (keyup)="changed(searchBar.value) " autofocus><i class="fa fa-times"  (click)="resetSearch(searchBar)"></i>
+        <a *ngIf="this.redux.getState().admin" routerLink="/add-product">add product</a>
+    </div>
+</div>

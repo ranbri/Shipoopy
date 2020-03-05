@@ -1,0 +1,21 @@
+<div class="search">
+    <ng-container *ngIf="!this.redux.getState().searchOn; then firstTemp; else secondTemp"></ng-container>
+    <ng-template #firstTemp>
+        <p>Search Products To Edit!</p>
+    </ng-template>
+    <ng-template #secondTemp>
+        <app-loading></app-loading>
+        <div class="cards-container">
+            <p *ngIf="this.redux.getState().foundProducts.length === 0 && !this.redux.getState().loading">confirmOrders not found</p>
+            <div ngClass="product-card" *ngFor="let product of this.redux.getState().foundProducts" id={{product._id}}>
+                <div ngClass="card-content">
+                    <p>{{product.name}}</p>
+                    <p>price: {{product.price}} &#8362;</p>
+                    <button (click)="edit(product)">edit</button>
+                    <app-thumbnail [product]=product [cursor]="false"></app-thumbnail>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <app-edit-product></app-edit-product>
+</div>

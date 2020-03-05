@@ -1,0 +1,49 @@
+<div>
+    <form *ngIf="customer" [formGroup]="registration">
+        <app-loading *ngIf="this.redux.getState().loading"></app-loading>
+        <table *ngIf="!this.redux.getState().loading">
+            <tbody>
+                <tr>
+                    <td><label>first name:</label></td>
+                    <td><input [(ngModel)]="customer.firstName" formControlName="firstName" type="text" required
+                            pattern="^\D{2,}$" autofocus></td>
+                    <span *ngIf="this.registration.controls.firstName.touched&&this.registration.controls.firstName.value===undefined">*</span>
+                    <span *ngIf="this.registration.controls.firstName.invalid&&this.registration.controls.firstName.value!==undefined">2 charachters min!</span>
+                    <span *ngIf="this.registration.controls.firstName.untouched&&this.registration.controls.firstName.pristine">*</span>
+                </tr>
+                <tr>
+                    <td><label>last name:</label></td>
+                    <td><input [(ngModel)]="customer.lastName" formControlName="lastName" type="text" required
+                            pattern="\D{2,}$">
+                    </td>
+                    <span *ngIf="this.registration.controls.lastName.touched&&this.registration.controls.lastName.value===undefined">*</span>
+                    <span *ngIf="this.registration.controls.lastName.invalid&&this.registration.controls.lastName.value!==undefined">2 charachters min!</span>
+                    <span *ngIf="this.registration.controls.lastName.untouched&&this.registration.controls.lastName.pristine">*</span>
+                </tr>
+                <tr>
+                    <td><label>email:</label></td>
+                    <td><input [(ngModel)]="customer.email" formControlName="email" type="email" required
+                            pattern="^(\w|\W)+@\w+\.(\w|\.)+$"></td>
+                    <span *ngIf="this.registration.controls.email.touched&&this.registration.controls.email.value===undefined">*</span>
+                    <span *ngIf="this.registration.controls.email.invalid&&this.registration.controls.email.value!==undefined">email not valid</span>
+                    <span *ngIf="this.registration.controls.email.untouched&&this.registration.controls.email.pristine">*</span>
+                </tr>
+                <tr>
+                    <td><label>password:</label></td>
+                    <td><input [(ngModel)]="customer.password" formControlName="password" type="password" required
+                            pattern="^\w{4,}$"></td>
+                    <span *ngIf="this.registration.controls.password.touched&&this.registration.controls.password.value===undefined">*</span>
+                    <span *ngIf="this.registration.controls.password.invalid&&this.registration.controls.password.value!==undefined">password not valid</span>
+                    <span *ngIf="this.registration.controls.password.untouched&&this.registration.controls.password.pristine">*</span>
+                </tr>
+                <tr>
+                    <td><label>confirm password:</label></td>
+                    <td><input formControlName="confirmPassword" type="password" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button"
+            [disabled]="!registration.valid || registration.controls.confirmPassword.value !== registration.controls.password.value"
+            (click)="addCustomer()">register</button>
+    </form>
+</div>

@@ -1,0 +1,93 @@
+@import '../../../variables.scss';
+div.navBar{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    .nav{
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        span{
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+        border-bottom: 1px solid $semi;
+        a{
+            color: $semi;
+            margin: 10px ;
+            text-decoration: none;
+            text-transform: capitalize;
+            font-size: 16px;
+            font-family: $font-family2;
+            &:hover{
+                font-size: 18px;
+                transform: translate(-5px , -5px);
+                font-weight: bolder;
+                z-index: 2;
+                border-bottom: 2px solid $semi;
+            }
+        }
+    }
+    .search{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: max-content;
+        height: max-content;
+        label{
+            margin-right: 10px;
+            color: $semi;
+            font-size: 20px;
+            left: 90% ;
+        }
+        input{
+            width: 180px;
+            border-radius: 5px;
+            font-weight: bolder;
+            background: $semi;
+            color: $main;
+            border: 4px solid $semi;
+            outline: none;
+            margin-right: -5px;
+            font-size: 15px;
+        }
+        
+        i{
+            left: 95%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            color: $main;
+            cursor: pointer;
+           
+        } i:hover{
+            color: white;
+        }
+        a{
+            position: fixed;
+            margin-left: 20px;
+            margin-top: 3px;
+            font-size: 18px;
+            color: $semi;
+            font-weight: bolder;
+            text-decoration: none;
+            &:hover{
+                color: white;
+                font-size: 19px;
+            }
+        }
+    }
+    p{
+        position: relative;
+        display: inline;
+        text-transform: uppercase;
+        font-size: 1em;
+        color: $semi;
+        font-weight: 500;
+        letter-spacing: .05em;
+        margin-left: 1em;
+        font-weight: bolder;
+
+    }
+}

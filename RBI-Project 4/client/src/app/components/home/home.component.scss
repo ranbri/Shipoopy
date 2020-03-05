@@ -1,0 +1,18 @@
+div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    grid-template-rows:  none;
+    grid-template-columns:  40% 60%;
+    app-loading{
+        grid-column: 1/12;
+    }
+    app-products{
+        width: 110% !important;
+    }
+    app-cart{
+        width: 25% !important;
+    }
+    
+}

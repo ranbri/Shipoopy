@@ -1,0 +1,15 @@
+<div class="hide">
+    <h2>Product Editor</h2>
+    <form *ngIf="this.product" [formGroup]="saveChanges">
+        <label>name:</label>
+        <input type="text" [(ngModel)]="product.name" formControlName="name" value={{this.product.name}}>
+        <br>
+        <label>price:</label>
+        <input type="number" [(ngModel)]="product.price" formControlName="price" value={{this.product.price}} pattern="^\d\.$">
+        <br>
+        <input id="file" type="file" style="display: none;" (change)="fileProgress($event)"/>
+        <button type="button" (click)="save()">save changes</button>
+        <button type="button" (click)="close()">cancel</button>
+    </form>
+    <app-thumbnail title="Update Photo" [product]="this.product" [cursor]="true" onclick="document.getElementById('file').click();"></app-thumbnail>
+</div>

@@ -1,0 +1,6 @@
+<div>
+    <app-loading *ngIf="this.redux.getState().loading && !this.redux.getState().currentCart"></app-loading>
+    <app-products *ngIf="!this.redux.getState().loading || this.redux.getState().currentCart"></app-products>
+    <app-cart *ngIf="!this.redux.getState().loading || this.redux.getState().currentCart" class="scrollbar"></app-cart>
+
+</div>

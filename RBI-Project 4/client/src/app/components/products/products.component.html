@@ -1,0 +1,42 @@
+<div>
+    <router-outlet name="checkout"></router-outlet>
+    <ng-container *ngIf="this.redux.getState().searchOn; then firstTemp; else secondTemp"></ng-container>
+    <ng-template #firstTemp>
+        <div class="search">
+            <app-loading *ngIf="this.redux.getState().searchOn"></app-loading>
+            <p *ngIf="this.redux.getState().foundProducts.length === 0">requested products not found</p>
+            <div class="card-box">
+                <div ngClass="card-product" *ngFor="let product of this.redux.getState().foundProducts" id={{product._id}}>
+                    <div ngClass="card-content">
+                        <p>{{product.name}}</p>
+                        <p>price: {{product.price}} &#8362;</p>
+                        <input #amount type="number" min=1 value=1 />
+                        <button (click)="addProd(product._id, amount.value)">add</button>
+                        <app-thumbnail [product]=product (click)="prodDetails(product)"></app-thumbnail>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #secondTemp>
+        <div class="products">
+            <select [(ngModel)]="category" (change)="loadProducts()">
+                <option value="undefined" selected disabled>select category</option>
+                <option *ngFor="let category of this.redux.getState().prodCategories" value={{category._id}}>{{category.name}}</option>
+            </select>
+            <app-loading *ngIf="this.redux.getState().loading"></app-loading>
+            <div *ngIf="!this.redux.getState().loading" class="card-box">
+                <div ngClass="card-product" *ngFor="let product of this.redux.getState().categoryProducts" id={{product._id}}>
+                    <div ngClass="card-content">
+                        <p id="p1">{{product.name}}</p>
+                        <p id="p2">price: {{product.price}} &#8362;</p>
+                        <input #amount type="number" min=1 value=1 />
+                        <button (click)="addProd(product._id, amount.value)">add</button>
+                        <app-thumbnail [product]=product [cursor]="true" (click)="prodDetails(product)"></app-thumbnail>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <app-product-details></app-product-details>
+</div>

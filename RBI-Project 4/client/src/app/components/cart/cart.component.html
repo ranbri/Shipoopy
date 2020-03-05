@@ -1,0 +1,27 @@
+<div >
+    <i *ngIf="this.router.routerState.snapshot.url !== '/checkout'" class="fa fa-times" (click)="clearCart()">&nbsp;<p>clear cart</p></i>
+    <table  *ngIf="this.redux.getState().currentCart">
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>units</th>
+                <th>price</th>
+                <th *ngIf="this.router.routerState.snapshot.url !== '/checkout'">edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr #item *ngFor="let cp of this.redux.getState().currentCart.cartProducts" id={{cp.product._id}} class="shown">
+                <td class="left">{{cp.product.name}}</td>
+                <td>{{cp.quant}}</td>
+                <td>{{(cp.totalPrice).toFixed(2)}}&#8362;</td>
+                <td *ngIf="this.router.routerState.snapshot.url !== '/checkout'"><i class="fa fa-times" (click)="removeItem(item)"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="this.redux.getState().currentCart">total: {{this.redux.getState().currentCart.overallPrice.toFixed(2)}} &#8362;</p>
+    <button 
+    *ngIf="this.redux.getState().currentCart && this.router.routerState.snapshot.url !== '/checkout'" 
+    [disabled]="this.redux.getState().currentCart.cartProducts.length === 0" 
+    routerLink="/checkout"
+    >check out</button>
+</div>

@@ -1,0 +1,13 @@
+div{
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    left: 0;
+    margin-top: 10px;
+    img{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+    }
+}

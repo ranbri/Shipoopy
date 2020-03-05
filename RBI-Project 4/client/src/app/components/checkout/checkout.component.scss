@@ -1,0 +1,110 @@
+@import '../../../variables.scss';
+
+.green{
+    color:lightgreen;
+}
+.default{
+    color:$semi;
+    font-weight: bolder;
+    margin-left: -300% !important;
+}
+h2{
+    color: $semi;
+}
+.error{
+    margin-left: -140%;
+}
+
+
+
+div.checkout{
+    position: absolute;
+    top: 20%;
+    left: 6%;
+    bottom: 0;
+    width: 45%;
+    height: 100%;
+    display: block;
+    flex-direction: row;
+    
+    form{
+        position: relative;
+        left: 100%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 40%;
+        background: $main;
+        border-radius: 5px;
+        box-shadow: $box-shadow;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        padding: 5%;
+        padding-bottom: 10%;
+        table{
+            display: block;
+            position: relative;
+            left: 55%;
+            color: $semi;
+            font-weight: bolder;
+            select,option{
+                border-radius: 5px;
+                text-transform: capitalize;
+                background: $semi;
+                color: $main;
+                font-weight: bolder;
+                width: 172px;
+            }
+            input{
+                background: transparent;
+                border: none;
+                border-bottom: $border $semi;
+                outline: none;
+                color: $semi;
+                font-family: $font-family;
+            }
+        }
+        button{
+            border-radius: 5px;
+            position: absolute;
+            bottom: 10%;
+            width: 40%;
+            padding: .2em 0;
+            background: $main;
+            border: $border $semi;
+            color: $semi;
+            font-family: $font-family;
+            font-size: 1em;
+            text-transform: uppercase;
+            outline: none;
+            ;
+            transition: .3s;
+            &:disabled{
+                cursor: no-drop;
+                transition: none;
+                color: $disabled;
+                font-weight: bolder;
+            }
+            &:enabled:hover{
+                border-color: $main;
+                color: $main;
+                background: $semi;
+            }
+        }
+    }
+    .delivery-form{
+        margin-top: 5%;
+        padding-bottom: 10%;
+    }
+    .cc select {
+    width: 30% !important;
+    height: 20px;
+    float: right;
+    }
+    table td:nth-of-type(1){
+        // border: 1px solid black !important;
+        position: relative;
+        margin-right: 10px;
+    }
+
+}

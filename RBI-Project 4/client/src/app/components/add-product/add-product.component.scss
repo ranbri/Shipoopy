@@ -1,0 +1,87 @@
+@import '../../../variables.scss';
+
+div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    label{
+        float: left;
+    }
+    form{
+        position: absolute;
+        top: 20%;
+        width: 30%;
+        height: 65%;
+        padding: 50px;
+        background: $main;
+        color: $semi;
+        border-radius: 8px;
+
+        input,label, select{
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+         button {
+            display: block;
+            margin: auto;
+        }
+        select{
+            height: fit-content;
+            width: fit-content;
+            text-transform: capitalize;
+            font-size: 14px;
+            font-family:$font-family;
+            color: $semi ;
+            background: $main;
+            border: none;
+            border: $border $semi;
+            cursor: pointer;
+        }
+        label{
+            text-transform: capitalize;
+            font-size: 20px;
+            text-align: left;
+        }
+        input{
+            background: transparent;
+            border: none;
+            border-bottom: $border $semi;
+            height: 22px;
+            width: 180px;
+            color: $semi;
+            font-weight: bolder;
+            font-size: 18px;
+            font-family:$font-family;
+       
+        }
+    }
+    button{
+        border-radius: 5px;
+        position: relative;
+        padding: 2px 40px;
+        background: $semi;
+        color: $main;
+        top: 20px;
+        border: none;
+        transition: .2s;
+        &:hover{
+            background: $main;
+            color: $semi;
+            transform: translateY(10%);
+            font-weight: bolder;
+        }
+
+    }
+    button.add{
+        border-radius: 10px;
+        width: 120px;
+        font-size: x-large;
+    }
+    .img-box{
+        margin-left: -25%;
+
+    }
+
+}
